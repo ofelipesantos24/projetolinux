@@ -11,7 +11,6 @@ Criei uma nova VPC personalizada com as seguintes configurações:
 * Tabela de rotas com acesso à internet (gateway de internet criado e associado)
 * Segurança configurada via grupo de segurança (SG)
 
-Essa configuração permitiu isolar recursos e manter uma estrutura mais próxima do padrão corporativo.
 
 ---
 
@@ -85,7 +84,7 @@ Inicialmente a instância EC2 estava com status "não gerenciado" (Managed: fals
 * Criei uma *IAM Role* com a política AmazonSSMManagedInstanceCore
 * Associei essa role à EC2
 
-Agora é possível acessar com *Session Manager* sem expor portas ou usar chaves SSH.
+Assim ficou possível acessar com *Session Manager* sem expor portas ou usar chaves SSH.
 
 ---
 
@@ -117,15 +116,15 @@ fi
 
 Adicionei o script no crontab -e para rodar a cada 1 minuto:
 
-
+```bash
 * * * * * /bin/bash /home/ec2-user/monitoramento/monitoramento.sh
 
-
+```
 ---
 
 ## 🖼 AMI – Imagem Personalizada do Projeto
 
-Para facilitar futuras recriações da instância ou replicações da infraestrutura, criei uma *AMI personalizada*:
+Criei uma AMI privada a partir da instância já configurada permitindo assim recriar ou replicar uma infraestrutura rapidamente, com toda a configuração pronta.
 
 * NGINX instalado e em execução
 * Página HTML publicada
@@ -140,25 +139,13 @@ Para facilitar futuras recriações da instância ou replicações da infraestru
 4. Visibilidade: *Privada*
 5. ID da AMI gerado: ami-0d0eacf79b739391a
 
-Essa AMI agora pode ser usada para lançar novas instâncias com toda a estrutura pronta.
+
 
 ---
 
-## ✅ Conclusão
+## RESULTADO FINAL ✅
 
-
-
-* VPC personalizada criada
-* EC2 configurada com IP fixo e acesso via SSM
-* Servidor NGINX funcionando
-* Página web personalizada publicada
-* Sistema de alerta com Telegram configurado
-* Automação de monitoramento com Crontab
-* Imagem AMI pronta para replicações futuras 
-
-Resultado Final 
-
-### 🌐 Acesse o site: (http://3.132.135.34) 
+### 🌐  site: http://3.132.135.34 
 
 Imagens da fucionalidade do site + monitoramento 
 ![funcionalidadedosite](https://github.com/user-attachments/assets/cb6ed793-0bbf-4aaa-8586-a117f7934740)
