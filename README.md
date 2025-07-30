@@ -1,8 +1,6 @@
 # Projeto Linux AWS: Infraestrutura Web com Monitoramento Automatizado
 
-Este projeto foi desenvolvido com foco em práticas de infraestrutura na AWS utilizando uma instância EC2, servidor web NGINX e um sistema de monitoramento com notificações via Telegram.
 
----
 
 ## 🌐 VPC Personalizada
 
@@ -37,17 +35,20 @@ Criei uma instância EC2 Amazon Linux 2023, configurada da seguinte forma:
 
 Acesse a instância via terminal e execute:
 
-bash
+```bash
 sudo yum update -y
 sudo amazon-linux-extras enable nginx1
 sudo yum install -y nginx
-sudo systemctl enable nginx<img 
+sudo systemctl enable nginx
 sudo systemctl start nginx
+``` 
 
 
-Edite o arquivo de boas-vindas:
 
-html
+
+### 💻 Código HTML do site de boas-vindas:
+
+```html
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -71,7 +72,7 @@ html
   <h1>🚀 Bem-vindo ao meu Projeto Linux!</h1>
 </body>
 </html>
-
+```
 
 ---
 
@@ -92,7 +93,8 @@ Agora é possível acessar com *Session Manager* sem expor portas ou usar chaves
 
 Criei o arquivo monitoramento.sh com o seguinte conteúdo:
 
-bash
+```bash
+
 #!/bin/bash
 source /home/ec2-user/monitoramento/.env
 
@@ -107,7 +109,7 @@ if [ "$STATUS" != "200" ]; then
          -d chat_id="$CHAT_ID" \
          -d text="$MENSAGEM"
 fi
-
+```
 
 ---
 
